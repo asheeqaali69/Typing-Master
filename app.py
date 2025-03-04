@@ -2,18 +2,19 @@ import streamlit as st
 import time
 import random
 
-# Sample text options
+
 sample_texts = [
     "The quick brown fox jumps over the lazy dog.",
     "If clouds had souls it would never stop raining.",
     "Streamlit makes it easy to build web apps with Python.",
     "Seek success, but always be prepared for random cats.",
-    "Just because the water is red doesn't mean you can't drink it."
+    "Just because the water is red doesn't mean you can't drink it.",
+    "Small habits make a big difference"
 ]
 
 def calculate_wpm(start_time, end_time, typed_text):
     words = len(typed_text.split())
-    time_taken = (end_time - start_time) / 60  # Convert seconds to minutes
+    time_taken = (end_time - start_time) / 60  
     return words / time_taken if time_taken > 0 else 0
 
 def calculate_accuracy(original, typed):
@@ -22,10 +23,10 @@ def calculate_accuracy(original, typed):
     correct_words = sum(1 for o, t in zip(original_words, typed_words) if o == t)
     return (correct_words / len(original_words)) * 100 if original_words else 0
 
-# Streamlit UI
+
 st.title("Typing Master - Speed Test")
 
-# Select a random text for typing test
+
 if 'text' not in st.session_state:
     st.session_state.text = random.choice(sample_texts)
 
@@ -48,7 +49,7 @@ if st.button("Submit"):
     st.success(f"Your typing speed: {wpm:.2f} WPM")
     st.success(f"Your accuracy: {accuracy:.2f}%")
     
-    # Reset session state
+  
     st.session_state.start_time = None
 
 def next_sentence():
